@@ -1,25 +1,59 @@
 import sys
 
-from PySide2.QtCore import QSize, Qt
-from PySide2.QtWidgets import QApplication, QMainWindow, QPushButton
+from PySide6 import QtGui as QtG
+from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QWidget, QPushButton, QFrame
+
+from config.settings import staticFiles
+from components.layout import Layout
+from components.header import Header
 
 
-# Subclass QMainWindow to customize your application's main window
+class Button:
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def display() -> QWidget:
+        button = QPushButton()
+        # button.setStyleSheet("background: #80ffff")
+        return button
+
+
+
+
+
+
+class BodyWidget:
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def display() -> QWidget:
+        widget = QWidget()
+        widget.setStyleSheet("background: #f1f1f1")
+        widget.setLayout(Layout(direction="V").display())
+        return widget
+
+
 class MainWindow(QMainWindow):
+
     def __init__(self):
         super().__init__()
+        self.setWindowTitle("Hello World")
+        self.setWindowIcon(QtG.QIcon(staticFiles("img", "WML.png")))
+        self.setMinimumSize(500, 400)
+        # self.resize(1300, 700)
+        # self.showMaximized()
 
-        self.setWindowTitle("My App")
+        self.setCentralWidget(BodyWidget.display())
 
-        button = QPushButton("Press Me!")
-
-        # Set the central widget of the Window.
-        self.setCentralWidget(button)
+        statusBar = self.statusBar()
+        statusBar.setStyleSheet("background: #F2F2F2")
 
 
-app = QApplication(sys.argv)
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
 
-window = MainWindow()
-window.show()
-
-app.exec_()
+    sys.exit(app.exec())

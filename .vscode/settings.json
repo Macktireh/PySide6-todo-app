@@ -1,0 +1,9 @@
+{
+  "files.autoSave": "afterDelay",
+  "files.exclude": {
+    "**/.git": false
+  },
+  "python.linting.pylintUseMinimalCheckers": false,
+  "python.formatting.provider": "autopep8",
+  "editor.formatOnSave": true
+}
